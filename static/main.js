@@ -9,7 +9,7 @@ require('bootstrap');
 
 var Isotope = require('isotope-layout');
 
-$(document).ready(function () {
+$(window).load(function () {
   if ($('.grid').length < 1) return false;
 
   var iso = new Isotope('.grid', {
@@ -21,6 +21,8 @@ $(document).ready(function () {
   $('.grid-item a').on('click', function (e) {
     e.preventDefault();
   });
+
+  $('.grid-buttons').removeClass('hidden');
 
   $('.grid-buttons button').click(function (e) {
     e.preventDefault();
