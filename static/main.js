@@ -12,6 +12,15 @@ var Isotope = require('isotope-layout');
 $(window).load(function () {
   if ($('.grid').length < 1) return false;
 
+  var heights = [];
+  $('.grid-item').each(function () {
+    heights.push($(this).height());
+  });
+
+  var maxHeight = Math.min.apply(Math, heights);
+
+  $('.grid-item, .grid-item a').css('max-height', maxHeight);
+
   var iso = new Isotope('.grid', {
     itemSelector: '.grid-item',
     percentPosition: true,
