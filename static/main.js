@@ -12,14 +12,20 @@ var Isotope = require('isotope-layout');
 $(window).load(function () {
   if ($('.grid').length < 1) return false;
 
-  var heights = [];
-  $('.grid-item').each(function () {
-    heights.push($(this).height());
-  });
+  $(window).resize(maxHeights);
 
-  var maxHeight = Math.min.apply(Math, heights);
+  function maxHeights() {
+    $('.grid-item, .grid-item a').css('max-height', '325px');
 
-  $('.grid-item, .grid-item a').css('max-height', maxHeight);
+    var heights = [];
+    $('.grid-item').each(function () {
+      heights.push($(this).height());
+    });
+
+    $('.grid-item, .grid-item a').css('max-height', Math.min.apply(Math, heights));
+  }
+
+  maxHeights();
 
   var iso = new Isotope('.grid', {
     itemSelector: '.grid-item',
